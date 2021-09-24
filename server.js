@@ -1,17 +1,17 @@
 const path = require('path');
 var express = require("express");
 var logger = require("morgan");
-
-//
 const dbConnect = require("./config/config");
 
 
 var app = express();
 const cors = require('cors');
+const {priceCalculator} = require("./controller/priceCalculator");
 require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(logger("dev"));
+
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 
@@ -26,6 +26,7 @@ app.get("/api", (req, res) => {
 app.get("/", (req, res) => {
   res.json({ message: "Hello this is Myperfect Writer Server!" });
 });
+app.post("/calculate-price", priceCalculator );
 
 
 dbConnect();
