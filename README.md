@@ -43,3 +43,4 @@ Here is the list of required Attributes
 
 5. time
 
+6. numberOfPages
