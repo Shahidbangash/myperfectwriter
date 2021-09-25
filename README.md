@@ -27,6 +27,14 @@ async function postData(url = '', data = {}) {
 }
 
 ```
+## How to use API END POINTS
+
+1. Go to [reqbin.com](https://reqbin.com/). (ReqBin is an online API testing tool for REST and SOAP APIs.).
+2. Enter API end points in URL section of website.
+3. Specify request type i-e POST,GET.
+4. Click on send button.
+5. Now Response will be shown at right side.
+6. To send post request body, click on content tab and enter a JSON object as body.A common JSON object is given below to undersand the json format.
 
 ### Request A Price
 
@@ -44,3 +52,35 @@ Here is the list of required Attributes
 5. time
 
 6. numberOfPages
+
+```http
+https://my-perfect-writer.herokuapp.com/calculate-price
+```
+
+```javascript
+METHOD = POST
+```
+
+```javascript
+// request data 
+// Note this object must be presented in body to request 
+{
+    "date":"9-26-2021", 
+    "time":"20:00", 
+    "email":"shahid@gmail.com", 
+    "phone":12312321, 
+    "documentType":"Physics", 
+    "academicLevel": "college-undergraduate",
+    "noOfPages":3
+}
+// On Success , you will receive object with status code 200 or 201 with object like this 
+
+{
+  "message": String,
+  "price": 48.900000000000006,
+  "hoursDifference": 32,
+  "sucess":true,
+}
+
+```
+

@@ -8,8 +8,9 @@ module.exports.priceCalculator = async (req, res, next) => {
   var hoursDifference = deadlineDate.diff(moment.utc(), "hours");
   var result = this.GetPrice(hoursDifference, academicLevel) * (noOfPages || 1);
   res.json({
-    message: "Hello this is Myperfect Writer Server!",
+    message: "Here is the price for requested subject!",
     price: result,
+    success:true,
     "hoursDifference":hoursDifference,
   });
 };
