@@ -22,6 +22,7 @@ module.exports.priceCalculator = async (req, res, next) => {
     noOfPages,
     deadline: deadlineDate,
     academicLevel: academicLevel,
+    submissionDate: moment(),
   });
 
   res.json({
@@ -29,7 +30,6 @@ module.exports.priceCalculator = async (req, res, next) => {
     price: result,
     success: true,
     hoursDifference: hoursDifference,
-    submissionDate: moment(),
   });
 };
 
