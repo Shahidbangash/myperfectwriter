@@ -14,18 +14,18 @@ module.exports.priceCalculator = async (req, res, next) => {
     var result =
       this.GetPrice(hoursDifference, academicLevel) * (noOfPages || 1);
 
-    const { email, phone, documentType, academicLevel, noOfPages } = req.body;
-
-    const leadsObject = await leadsSchema.save({
+    const leads = leadsSchema({
       email,
       phone,
       documentType,
       academicLevel,
       noOfPages,
       deadline: deadlineDate,
-      academicLevel: academicLevel,
-      submissionDate: moment(),
+      price: result,
+      // academicLevel: academicLevel,
+      // submissionDate: moment(),
     });
+    await leads.save();
 
     res.status(200).json({
       message: "Here is the price for requested subject!",
@@ -38,7 +38,7 @@ module.exports.priceCalculator = async (req, res, next) => {
       message: "We have Error!",
       price: result,
       success: false,
-      error,
+      error: error,
     });
   }
 };

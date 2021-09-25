@@ -84,3 +84,29 @@ METHOD = POST
 
 ```
 
+```http
+POST = https://my-perfect-writer.herokuapp.com/create-order
+```
+
+```javascript
+// Request object data 
+{
+    "date":"9-26-2021", 
+    "time":"20:00", 
+    "email":"shahid@gmail.com", 
+    "phone":12312321, 
+    "documentType":"Physics", 
+    "academicLevel": "college-undergraduate",
+    "noOfPages":3
+}
+
+// Now this will return a response
+
+{
+  "message": "Here is the price for requested subject!",
+  "price": 54,
+  "success": true,
+  "hoursDifference": 19
+}
+
+```

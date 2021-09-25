@@ -2,10 +2,13 @@ const path = require("path");
 var express = require("express");
 var logger = require("morgan");
 const dbConnect = require("./config/config");
+const orderSchema= require("./model/orderSchema")
+const {createOrder , getActiveOrders , getAllOrders}= require("./controller/orderController")
 
 var app = express();
 const cors = require("cors");
-const { priceCalculator } = require("./controller/priceCalculator");
+const { priceCalculator , } = require("./controller/priceCalculator");
+
 require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 app.use(cors());
@@ -27,6 +30,10 @@ app.get("/", (req, res) => {
   res.json({ message: "Hello this is Myperfect Writer Server!" });
 });
 app.post("/calculate-price", priceCalculator);
+app.post("/create-order",createOrder )
+app.get("/get-all-orders",getAllOrders )
+app.get("/get-active-orders",getActiveOrders )
+
 
 app.get("*", function (req, res) {
   res.status(404).json({ message: "Sorry You have entered wrong route" });
