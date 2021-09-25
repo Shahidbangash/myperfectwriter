@@ -5,32 +5,42 @@ const leads = require("../model/leadsSchema");
 var moment = require("moment"); // require
 const leadsSchema = require("../model/leadsSchema");
 module.exports.priceCalculator = async (req, res, next) => {
-  const { date, time, email, phone, documentType, noOfPages, academicLevel } =
-    req.body;
-  var deadlineDate = moment(`${date} ${time}`, "MM-DD-YYYY hh:mm P");
+  try {
+    const { date, time, email, phone, documentType, noOfPages, academicLevel } =
+      req.body;
+    var deadlineDate = moment(`${date} ${time}`, "MM-DD-YYYY hh:mm P");
 
-  var hoursDifference = deadlineDate.diff(moment.utc(), "hours");
-  var result = this.GetPrice(hoursDifference, academicLevel) * (noOfPages || 1);
+    var hoursDifference = deadlineDate.diff(moment.utc(), "hours");
+    var result =
+      this.GetPrice(hoursDifference, academicLevel) * (noOfPages || 1);
 
-  const { email, phone, documentType, academicLevel, noOfPages } = req.body;
+    const { email, phone, documentType, academicLevel, noOfPages } = req.body;
 
-  const leadsObject = await leadsSchema.save({
-    email,
-    phone,
-    documentType,
-    academicLevel,
-    noOfPages,
-    deadline: deadlineDate,
-    academicLevel: academicLevel,
-    submissionDate: moment(),
-  });
+    const leadsObject = await leadsSchema.save({
+      email,
+      phone,
+      documentType,
+      academicLevel,
+      noOfPages,
+      deadline: deadlineDate,
+      academicLevel: academicLevel,
+      submissionDate: moment(),
+    });
 
-  res.json({
-    message: "Here is the price for requested subject!",
-    price: result,
-    success: true,
-    hoursDifference: hoursDifference,
-  });
+    res.status(200).json({
+      message: "Here is the price for requested subject!",
+      price: result,
+      success: true,
+      hoursDifference: hoursDifference,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "We have Error!",
+      price: result,
+      success: false,
+      error,
+    });
+  }
 };
 
 module.exports.GetPrice = (hours, academic) => {
