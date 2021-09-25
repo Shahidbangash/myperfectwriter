@@ -49,3 +49,32 @@ module.exports.getAllOrders = async (req, res, next) => {
     });
   }
 };
+
+// Get Active Orders
+module.exports.getActiveOrders = async (req, res, next) => {
+  try {
+    const orders = await orderModel.find({
+      orderStatus: "active",
+    });
+    if (orders == null) {
+      res.status(400).json({
+        success: false,
+        message: "Sorry We have no active orders right now",
+        totalOrders: 0,
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: "Here is the list of all active orders",
+        totalOrders: orders.length,
+        orders,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "We could not fetch active orders",
+      error: err,
+    });
+  }
+};
