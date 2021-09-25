@@ -1,17 +1,35 @@
 //
 
+const leads = require("../model/leadsSchema");
+
 var moment = require("moment"); // require
+const leadsSchema = require("../model/leadsSchema");
 module.exports.priceCalculator = async (req, res, next) => {
-  const { date, time, email, phone, documentType, noOfPages ,academicLevel } = req.body;
+  const { date, time, email, phone, documentType, noOfPages, academicLevel } =
+    req.body;
   var deadlineDate = moment(`${date} ${time}`, "MM-DD-YYYY hh:mm P");
 
   var hoursDifference = deadlineDate.diff(moment.utc(), "hours");
   var result = this.GetPrice(hoursDifference, academicLevel) * (noOfPages || 1);
+
+  const { email, phone, documentType, academicLevel, noOfPages } = req.body;
+
+  const leadsObject = await leadsSchema.save({
+    email,
+    phone,
+    documentType,
+    academicLevel,
+    noOfPages,
+    deadline: deadlineDate,
+    academicLevel: academicLevel,
+  });
+
   res.json({
     message: "Here is the price for requested subject!",
     price: result,
-    success:true,
-    "hoursDifference":hoursDifference,
+    success: true,
+    hoursDifference: hoursDifference,
+    submissionDate: moment(),
   });
 };
 
