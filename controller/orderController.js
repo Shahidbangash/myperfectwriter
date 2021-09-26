@@ -93,7 +93,7 @@ module.exports.getAllLeads = async (req, res, next) => {
     } else {
       res.status(200).json({
         success: true,
-        message: "Here is the list of all active orders",
+        message: "Here is the list of all leads",
         totalLeads: leads.length,
         leads,
       });
@@ -101,7 +101,7 @@ module.exports.getAllLeads = async (req, res, next) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "We could not fetch active orders",
+      message: "We could not fetch all the leads",
       error: err,
     });
   }
