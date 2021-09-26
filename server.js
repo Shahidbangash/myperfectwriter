@@ -3,11 +3,12 @@ var express = require("express");
 var logger = require("morgan");
 const dbConnect = require("./config/config");
 const orderSchema= require("./model/orderSchema")
-const {createOrder , getActiveOrders , getAllOrders}= require("./controller/orderController")
+const {createOrder , getActiveOrders , getAllOrders , getAllLeads}= require("./controller/orderController")
 
 var app = express();
 const cors = require("cors");
 const { priceCalculator , } = require("./controller/priceCalculator");
+const { get } = require("http");
 
 require("dotenv").config();
 const PORT = process.env.PORT || 5000;
@@ -31,9 +32,9 @@ app.get("/", (req, res) => {
 });
 app.post("/calculate-price", priceCalculator);
 app.post("/create-order",createOrder )
-app.get("/orders",getAllOrders )
 app.get("/active-orders",getActiveOrders )
-app.get("/leads", )
+app.get("/orders",getAllOrders )
+app.get("/leads", getAllLeads)
 
 
 app.get("*", function (req, res) {
