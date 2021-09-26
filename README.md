@@ -110,3 +110,8 @@ POST = https://my-perfect-writer.herokuapp.com/create-order
 }
 
 ```
+## Get All the leads
+
+```http
+
+```

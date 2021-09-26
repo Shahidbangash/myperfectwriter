@@ -31,8 +31,9 @@ app.get("/", (req, res) => {
 });
 app.post("/calculate-price", priceCalculator);
 app.post("/create-order",createOrder )
-app.get("/get-all-orders",getAllOrders )
-app.get("/get-active-orders",getActiveOrders )
+app.get("/orders",getAllOrders )
+app.get("/active-orders",getActiveOrders )
+app.get("/leads", )
 
 
 app.get("*", function (req, res) {
