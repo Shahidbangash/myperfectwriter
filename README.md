@@ -4,7 +4,7 @@ this doc describe documentation of API usage for [My Perfect Writer](https://www
 
 ## How to call this API EndsPoints using Javascript
 
-**I will write an example code to use this API using [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) **
+**I will write an example code to use this API using [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)**
 
 ```javascript
 // Here is the sample code to use API end points
@@ -27,6 +27,7 @@ async function postData(url = '', data = {}) {
 }
 
 ```
+
 ## How to use API END POINTS
 
 1. Go to [reqbin.com](https://reqbin.com/). (ReqBin is an online API testing tool for REST and SOAP APIs.).
@@ -38,7 +39,7 @@ async function postData(url = '', data = {}) {
 
 ### Request A Price
 
-To request a price , We need following attributes to get a successful response 
+To request a price , We need following attributes to get a successful response.
 Here is the list of required Attributes
 
 1. email
@@ -110,6 +111,7 @@ POST = https://my-perfect-writer.herokuapp.com/create-order
 }
 
 ```
+
 ## Get All the leads
 
 ```http
