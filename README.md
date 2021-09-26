@@ -113,5 +113,82 @@ POST = https://my-perfect-writer.herokuapp.com/create-order
 ## Get All the leads
 
 ```http
+https://my-perfect-writer.herokuapp.com/leads
+```
 
+```javascript
+
+METHOD = GET
+
+// Here is the response of leads ends points
+{
+  "success": true,
+  "message": "Here is the list of all leads",
+  "totalLeads": 2,
+  "leads": [
+    {
+      "_id": "614f72a07aa1b5517ef68389",
+      "email": "shahid@gmail.com",
+      "phone": 12312321,
+      "deadline": "Sun Sep 26 2021 20:00:00 GMT+0500",
+      "documentType": "Physics",
+      "academicLevel": "college-undergraduate",
+      "submissionDate": "2021-09-25T19:03:17.000Z",
+      "numberOfPages": 0,
+      "price": 54,
+      "__v": 0
+    },
+    {
+      "_id": "614f7342f747f02dd2ff0d20",
+      "email": "shahid@gmail.com",
+      "phone": 12312321,
+      "deadline": "Sun Sep 26 2021 20:00:00 GMT+0500",
+      "documentType": "Physics",
+      "academicLevel": "college-undergraduate",
+      "submissionDate": "2021-09-25T19:05:22.000Z",
+      "numberOfPages": 0,
+      "price": 54,
+      "__v": 0
+    }
+  ]
+}
+
+```
+
+### Get All the active orders
+
+```http
+https://my-perfect-writer.herokuapp.com/active-orders
+```
+
+```javascript
+METHOD = GET
+
+// RESPONSE
+
+{
+  "success": true,
+  "message": "Here is the list of all active orders",
+  "totalOrders": 0,
+  "orders": []
+}
+
+```
+
+### Get all orders
+
+```http
+https://my-perfect-writer.herokuapp.com/orders
+```
+
+```javascript
+METHOD = GET
+
+// Response 
+{
+  "success": true,
+  "message": "Here is the list of all orders",
+  "totalOrders": 0,
+  "orders": []
+}
 ```
