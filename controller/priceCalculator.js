@@ -19,7 +19,7 @@ module.exports.priceCalculator = async (req, res, next) => {
       phone,
       documentType,
       academicLevel,
-      noOfPages,
+      numberOfPages: noOfPages,
       deadline: deadlineDate,
       price: result,
       // academicLevel: academicLevel,
@@ -27,12 +27,21 @@ module.exports.priceCalculator = async (req, res, next) => {
     });
     await leads.save();
 
-    res.status(200).json({
-      message: "Here is the price for requested subject!",
-      price: result,
-      success: true,
-      hoursDifference: hoursDifference,
-    });
+    try {
+      res.status(200).json({
+        message: "Here is the price for requested subject!",
+        price: result,
+        success: true,
+        hoursDifference: hoursDifference,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "We have Error!",
+        price: result,
+        success: false,
+        error: error,
+      });
+    }
   } catch (error) {
     res.status(500).json({
       message: "We have Error!",
