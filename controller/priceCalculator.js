@@ -1,6 +1,6 @@
 //
 
-const leads = require("../model/leadsSchema");
+// const leads = require("../model/leadsSchema");
 
 var moment = require("moment"); // require
 const leadsSchema = require("../model/leadsSchema");
@@ -8,6 +8,7 @@ module.exports.priceCalculator = async (req, res, next) => {
   try {
     const { date, time, email, phone, documentType, noOfPages, academicLevel } =
       req.body;
+  
     var deadlineDate = moment(`${date} ${time}`, "MM-DD-YYYY hh:mm P");
 
     var hoursDifference = deadlineDate.diff(moment.utc(), "hours");
@@ -25,9 +26,9 @@ module.exports.priceCalculator = async (req, res, next) => {
       // academicLevel: academicLevel,
       // submissionDate: moment(),
     });
-    await leads.save();
-
+    
     try {
+      await leads.save();
       res.status(200).json({
         message: "Here is the price for requested subject!",
         price: result,
@@ -36,7 +37,7 @@ module.exports.priceCalculator = async (req, res, next) => {
       });
     } catch (error) {
       res.status(500).json({
-        message: "We have Error!",
+        message: "We have Error While Saving Leads!",
         price: result,
         success: false,
         error: error,
@@ -44,7 +45,7 @@ module.exports.priceCalculator = async (req, res, next) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: "We have Error!",
+      message: "We have Error while calculating price!",
       price: result,
       success: false,
       error: error,
